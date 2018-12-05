@@ -9,6 +9,7 @@ var index;
 function setup() {
   createCanvas(400, 400);
   stand = new Stand(); 
+  //Getting a random word using chance.js
   chance = new Chance();
   newWord = chance.word({length: random(5 ,8)});
   wordArr = split(newWord, ""); 
@@ -25,6 +26,7 @@ function draw() {
   textSize(10); 
   text("Click to reset hangman", 250, height - 50); 
   stand.show(); 
+  //Loop to display length of random word
   for(var j = 0; j < correctArr.length;j++){
     textSize(26); 
       fill(0);
@@ -51,6 +53,7 @@ this.show = function(){
 }
 function Hangman(){
     this.wrongCount = 0; 
+  //switch statement adds lines to the hangman as user gets incorrect answers 
   this.show = function(){
     switch(this.wrongCount){
     case 1:
@@ -96,6 +99,8 @@ function Hangman(){
   }
 }
 function keyPressed(){
+  //When the user presses a key the loop checks if that letter is in the random word.
+  //If the letter is in the random word that letter is moved into the correct array at the same index. 
     if(keyIsPressed === true){
  for(var i = 0; i < wordArr.length; i++){
     if(key === wordArr[i]){
